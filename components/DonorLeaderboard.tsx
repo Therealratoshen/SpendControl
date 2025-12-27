@@ -11,7 +11,7 @@ export function DonorLeaderboard() {
     address: DONATION_CONTRACT as `0x${string}`,
     abi: DONATION_CONTRACT_ABI,
     functionName: 'getTopDonors',
-    args: [10n],
+    args: [BigInt(10)],
     query: {
       enabled: !!DONATION_CONTRACT,
       refetchInterval: 30000, // Refresh every 30 seconds

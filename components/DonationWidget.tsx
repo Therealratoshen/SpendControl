@@ -11,7 +11,7 @@ const DONATION_CONTRACT = process.env.NEXT_PUBLIC_DONATION_CONTRACT || '';
 const USDC_ADDRESS = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913';
 
 export function DonationWidget() {
-  const { address, isConnected } = useAccount();
+  const { isConnected } = useAccount();
   const [selectedTier, setSelectedTier] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState<'ETH' | 'USDC'>('ETH');
   const [showWidget, setShowWidget] = useState(false);
@@ -154,33 +154,13 @@ export function DonationWidget() {
           {isConnected ? (
             <Transaction
               chainId={8453}
-              contracts={contracts}
+              calls={contracts}
               onStatus={handleOnStatus}
             >
               <TransactionButton
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-6 rounded-lg transition-colors"
-                text={`Donate ${paymentMethod === 'ETH' ? tier.amountETH + ' ETH' : '$' + tier.amountUSDC}`}
               />
-              <TransactionStatus>
-                {({ statusName, statusDescription }) => (
-                  <div className="mt-4 text-center">
-                    {statusName === 'success' && (
-                      <div className="bg-green-900/30 border border-green-500/50 rounded-lg p-4">
-                        <div className="text-2xl mb-2">🎉</div>
-                        <div className="font-semibold text-green-400">Thank you for your support!</div>
-                        <div className="text-sm text-gray-400 mt-1">
-                          You&apos;ve unlocked the {tier.name} badge
-                        </div>
-                      </div>
-                    )}
-                    {statusName === 'error' && (
-                      <div className="bg-red-900/30 border border-red-500/50 rounded-lg p-4 text-red-400">
-                        {statusDescription}
-                      </div>
-                    )}
-                  </div>
-                )}
-              </TransactionStatus>
+              <TransactionStatus className="mt-4" />
             </Transaction>
           ) : (
             <div className="text-center py-4 text-gray-400">
