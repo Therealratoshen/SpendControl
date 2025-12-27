@@ -90,7 +90,7 @@ export function SpendingDashboard({ address }: SpendingDashboardProps) {
     return (
       <div className="w-full max-w-6xl mx-auto p-6">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-2">SpendSystem</h1>
+          <h1 className="text-4xl font-bold mb-2">SpendControl</h1>
           <p className="text-gray-400">Your Base spending insights</p>
         </div>
 
@@ -112,7 +112,7 @@ export function SpendingDashboard({ address }: SpendingDashboardProps) {
     return (
       <div className="w-full max-w-6xl mx-auto p-6">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-2">SpendSystem</h1>
+          <h1 className="text-4xl font-bold mb-2">SpendControl</h1>
           <p className="text-gray-400">Your Base spending insights</p>
         </div>
 
@@ -133,7 +133,7 @@ export function SpendingDashboard({ address }: SpendingDashboardProps) {
   return (
     <div className="w-full max-w-6xl mx-auto p-6">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-2">SpendSystem</h1>
+        <h1 className="text-4xl font-bold mb-2">SpendControl</h1>
         <p className="text-gray-400">Your Base spending insights</p>
         {address && (
           <p className="text-gray-500 text-sm mt-1">

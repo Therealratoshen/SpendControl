@@ -1,4 +1,4 @@
-# SpendSystem - Base Blockchain Spending Analytics
+# SpendControl - Base Blockchain Spending Analytics
 
 A production-ready spending analytics dashboard for Base blockchain users. Track USDC transactions, monitor gas costs, and discover recurring payments with a beautiful, responsive interface.
 

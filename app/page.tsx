@@ -1,6 +1,9 @@
 'use client';
 
 import { SpendingDashboard } from '@/components/SpendingDashboard';
+import { DonationWidget } from '@/components/DonationWidget';
+import { DonorLeaderboard } from '@/components/DonorLeaderboard';
+import { SupporterBadge } from '@/components/SupporterBadge';
 import { Wallet } from '@coinbase/onchainkit/wallet';
 import { useAccount } from 'wagmi';
 
@@ -12,9 +15,12 @@ export default function Home() {
       {/* Header with Wallet Connection */}
       <div className="w-full max-w-6xl mb-8">
         <div className="flex justify-between items-center">
-          <div>
-            <h1 className="text-2xl font-bold">SpendSystem</h1>
-            <p className="text-gray-400 text-sm">Base blockchain analytics</p>
+          <div className="flex items-center gap-3">
+            <div>
+              <h1 className="text-2xl font-bold">SpendControl</h1>
+              <p className="text-gray-400 text-sm">Base blockchain analytics</p>
+            </div>
+            {isConnected && <SupporterBadge />}
           </div>
           <Wallet />
         </div>
@@ -22,7 +28,17 @@ export default function Home() {
 
       {/* Main Content */}
       {isConnected && address ? (
-        <SpendingDashboard address={address} />
+        <>
+          <SpendingDashboard address={address} />
+
+          {/* Donation Section */}
+          <div className="w-full max-w-6xl mt-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <DonationWidget />
+              <DonorLeaderboard />
+            </div>
+          </div>
+        </>
       ) : (
         <div className="w-full max-w-6xl mx-auto">
           <div className="bg-gray-900 rounded-lg p-12 text-center">
@@ -99,6 +115,22 @@ export default function Home() {
             <p className="text-gray-500 text-xs mt-2">
               Note: Demo mode will show read-only analytics. Connect your own wallet for full features.
             </p>
+          </div>
+
+          {/* Support Section (when not connected) */}
+          <div className="mt-8">
+            <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-lg p-8 border border-gray-700">
+              <div className="text-center mb-6">
+                <h3 className="text-2xl font-bold mb-2">SpendControl is Free Forever</h3>
+                <p className="text-gray-400">
+                  Built by an indie dev in Indonesia 🇮🇩
+                </p>
+                <p className="text-gray-500 text-sm mt-2">
+                  If SpendControl helps you, consider buying me a coffee ☕
+                </p>
+              </div>
+              <DonorLeaderboard />
+            </div>
           </div>
         </div>
       )}
