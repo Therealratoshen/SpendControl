@@ -57,94 +57,97 @@ export function DonationWidget() {
       ];
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
+    <div className="w-full">
       {!showWidget ? (
         <button
           onClick={() => setShowWidget(true)}
-          className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
+          className="w-full bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-600 hover:from-blue-700 hover:via-cyan-700 hover:to-blue-700 text-white font-bold py-6 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl shadow-blue-500/30 hover:shadow-blue-500/50 animate-gradient"
         >
-          <div className="flex items-center justify-center gap-2">
-            <span className="text-xl">☕</span>
-            <span>Support SpendControl</span>
+          <div className="flex items-center justify-center gap-3">
+            <span className="text-3xl">☕</span>
+            <span className="text-xl">Support SpendControl</span>
           </div>
         </button>
       ) : (
-        <div className="bg-gray-900 rounded-lg p-6 border border-gray-800 shadow-xl">
-          <div className="flex justify-between items-start mb-6">
+        <div className="glass-strong rounded-2xl p-8 border border-blue-500/30 shadow-2xl">
+          <div className="flex justify-between items-start mb-8">
             <div>
-              <h3 className="text-2xl font-bold mb-2">Support SpendControl</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-3xl font-bold mb-3 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                Support SpendControl
+              </h3>
+              <p className="text-gray-400">
                 SpendControl is free forever, built by an indie dev in Indonesia 🇮🇩
               </p>
             </div>
             <button
               onClick={() => setShowWidget(false)}
-              className="text-gray-500 hover:text-gray-300 transition-colors"
+              className="text-gray-500 hover:text-gray-300 transition-colors text-2xl w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-800"
             >
               ✕
             </button>
           </div>
 
           {/* Donation Tiers */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             {DONATION_TIERS.map((t, index) => (
               <button
                 key={t.name}
                 onClick={() => setSelectedTier(index)}
-                className={`p-4 rounded-lg border-2 transition-all duration-200 ${
+                className={`p-5 rounded-xl border-2 transition-all duration-200 hover-lift ${
                   selectedTier === index
-                    ? 'border-blue-500 bg-blue-900/20'
-                    : 'border-gray-700 bg-gray-800 hover:border-gray-600'
+                    ? 'border-blue-500 bg-gradient-to-br from-blue-500/20 to-cyan-500/10 shadow-lg shadow-blue-500/20'
+                    : 'border-gray-700 bg-gray-900/50 hover:border-blue-500/50'
                 }`}
               >
-                <div className="text-3xl mb-2">{t.emoji}</div>
-                <div className="font-semibold">${t.amountUSD}</div>
-                <div className="text-xs text-gray-400 mt-1">{t.name}</div>
+                <div className="text-4xl mb-3">{t.emoji}</div>
+                <div className="font-bold text-lg">${t.amountUSD}</div>
+                <div className="text-sm text-gray-400 mt-1">{t.name}</div>
               </button>
             ))}
           </div>
 
           {/* Payment Method */}
-          <div className="mb-6">
-            <label className="text-sm text-gray-400 mb-2 block">Payment Method</label>
-            <div className="flex gap-3">
+          <div className="mb-8">
+            <label className="text-sm font-semibold text-gray-400 mb-3 block">Payment Method</label>
+            <div className="flex gap-4">
               <button
                 onClick={() => setPaymentMethod('ETH')}
-                className={`flex-1 py-3 px-4 rounded-lg border-2 transition-all ${
+                className={`flex-1 py-4 px-5 rounded-xl border-2 transition-all ${
                   paymentMethod === 'ETH'
-                    ? 'border-blue-500 bg-blue-900/20'
-                    : 'border-gray-700 bg-gray-800 hover:border-gray-600'
+                    ? 'border-blue-500 bg-gradient-to-br from-blue-500/20 to-transparent shadow-lg shadow-blue-500/20'
+                    : 'border-gray-700 bg-gray-900/50 hover:border-blue-500/50'
                 }`}
               >
-                <div className="font-semibold">ETH</div>
-                <div className="text-sm text-gray-400">{tier.amountETH} ETH</div>
+                <div className="font-bold text-lg">ETH</div>
+                <div className="text-sm text-gray-400 mt-1">{tier.amountETH} ETH</div>
               </button>
               <button
                 onClick={() => setPaymentMethod('USDC')}
-                className={`flex-1 py-3 px-4 rounded-lg border-2 transition-all ${
+                className={`flex-1 py-4 px-5 rounded-xl border-2 transition-all ${
                   paymentMethod === 'USDC'
-                    ? 'border-blue-500 bg-blue-900/20'
-                    : 'border-gray-700 bg-gray-800 hover:border-gray-600'
+                    ? 'border-cyan-500 bg-gradient-to-br from-cyan-500/20 to-transparent shadow-lg shadow-cyan-500/20'
+                    : 'border-gray-700 bg-gray-900/50 hover:border-cyan-500/50'
                 }`}
               >
-                <div className="font-semibold">USDC</div>
-                <div className="text-sm text-gray-400">${tier.amountUSDC}</div>
+                <div className="font-bold text-lg">USDC</div>
+                <div className="text-sm text-gray-400 mt-1">${tier.amountUSDC}</div>
               </button>
             </div>
           </div>
 
           {/* Selected Tier Info */}
-          <div className="bg-gray-800 rounded-lg p-4 mb-6">
+          <div className="bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-xl p-6 mb-8 border border-blue-500/30">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-lg font-semibold flex items-center gap-2">
-                  {tier.emoji} {tier.description}
+                <div className="text-xl font-bold flex items-center gap-2 mb-2">
+                  <span className="text-3xl">{tier.emoji}</span>
+                  {tier.description}
                 </div>
-                <div className="text-sm text-gray-400 mt-1">
+                <div className="text-sm text-gray-400">
                   Unlock {tier.name} badge
                 </div>
               </div>
-              <div className="text-2xl font-bold text-blue-400">
+              <div className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
                 ${tier.amountUSD}
               </div>
             </div>
@@ -158,20 +161,20 @@ export function DonationWidget() {
               onStatus={handleOnStatus}
             >
               <TransactionButton
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-6 rounded-lg transition-colors"
+                className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-bold py-5 px-8 rounded-xl transition-all shadow-xl shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-105"
               />
-              <TransactionStatus className="mt-4" />
+              <TransactionStatus className="mt-6" />
             </Transaction>
           ) : (
-            <div className="text-center py-4 text-gray-400">
-              Connect your wallet to donate
+            <div className="text-center py-6 px-6 bg-gray-900/50 rounded-xl border border-gray-700">
+              <p className="text-gray-400 font-medium">Connect your wallet to donate</p>
             </div>
           )}
 
           {/* Footer */}
-          <div className="mt-6 pt-6 border-t border-gray-800 text-center text-sm text-gray-500">
-            <p>100% of donations go directly to the creator</p>
-            <p className="mt-1">Your support helps keep SpendControl free for everyone</p>
+          <div className="mt-8 pt-6 border-t border-gray-700/50 text-center text-sm text-gray-400">
+            <p className="font-medium mb-2">100% of donations go directly to the creator</p>
+            <p className="text-gray-500">Your support helps keep SpendControl free for everyone</p>
           </div>
         </div>
       )}
